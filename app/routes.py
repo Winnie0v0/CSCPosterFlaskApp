@@ -42,9 +42,7 @@ def upload_index():
 
 # from app.script.posterloader import canvas
 
-from app.script.hello import hello
-
-# from app.script.posterloader import canvas
+from app.script.posterloader import canvas
 
 @app.route('/upload_file', methods=['POST'])
 def upload_files():
@@ -59,7 +57,7 @@ def upload_files():
             uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
         return redirect(url_for('upload_files'))
     if "GenerateBtn" in request.form:
-        # poster = hello()
+        poster = canvas()
         return redirect(url_for('index'))
 
 @app.route('/upload/<filename>')
