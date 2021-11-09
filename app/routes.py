@@ -66,6 +66,11 @@ def upload(filename):
 
 DOWNLOAD_PATH = "../text2.png"
 
+@app.route('/download_file')
+def download_index():
+    downloadFiles = DOWNLOAD_PATH
+    return render_template('upload_files.html', downloadFiles=downloadFiles)
+
 @app.route('/download')
 def download():
     return send_file(DOWNLOAD_PATH, as_attachment=True)
