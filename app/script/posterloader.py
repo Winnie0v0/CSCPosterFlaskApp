@@ -78,7 +78,7 @@ def readCSV():
                 years[row["year"]].append(canvas)
 
                 #comment these out when not testing
-                canvas.save("new duck.jpg","JPEG")
+                canvas.save("newduck.jpg","JPEG")
 
 def sizePoster():
     pass
@@ -145,7 +145,8 @@ def canvas():
         indx += 1
    #show all the pictures
     canvas.save("text2.png","PNG")
-    canvas.show()
+    # canvas.show()
+    return canvas
 
 if __name__ == "__main__":
     #run code

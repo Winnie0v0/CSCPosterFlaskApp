@@ -40,6 +40,12 @@ def upload_index():
     files = os.listdir(app.config['UPLOAD_PATH'])
     return render_template('upload_files.html', files=files)
 
+# from app.script.posterloader import canvas
+
+from app.script.hello import hello
+
+# from app.script.posterloader import canvas
+
 @app.route('/upload_file', methods=['POST'])
 def upload_files():
     if "SubmitBtn" in request.form:
@@ -53,10 +59,13 @@ def upload_files():
             uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
         return redirect(url_for('upload_files'))
     if "GenerateBtn" in request.form:
+        # poster = hello()
         return redirect(url_for('index'))
-    
-
 
 @app.route('/upload/<filename>')
 def upload(filename):
     return send_from_directory(app.config['UPLOAD_PATH_2'], filename) 
+
+# @app.route('/poster/<filename>')
+# def upload(filename):
+#     return send_from_directory(app.config['UPLOAD_PATH_2'], filename) 
