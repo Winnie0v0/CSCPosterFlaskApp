@@ -1,5 +1,5 @@
 import os
-from flask import render_template, redirect, request, url_for, send_from_directory, abort
+from flask import render_template, redirect, request, url_for, send_from_directory, abort, send_file
 from app import app
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
@@ -57,13 +57,15 @@ def upload_files():
             uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
         return redirect(url_for('upload_files'))
     if "GenerateBtn" in request.form:
-        poster = canvas()
-        return redirect(url_for('index'))
+        canvas()
+        return redirect(url_for('download'))
 
 @app.route('/upload/<filename>')
 def upload(filename):
     return send_from_directory(app.config['UPLOAD_PATH_2'], filename) 
 
-# @app.route('/poster/<filename>')
-# def upload(filename):
-#     return send_from_directory(app.config['UPLOAD_PATH_2'], filename) 
+DOWNLOAD_PATH = "../text2.png"
+
+@app.route('/download')
+def download():
+    return send_file(DOWNLOAD_PATH, as_attachment=True)
